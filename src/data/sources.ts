@@ -44,6 +44,6 @@ export const officialSources = [
   },
 ] as const satisfies readonly OfficialSource[];
 
-export const officialSourceMap = new Map(
+export const officialSourceMap: ReadonlyMap<string, OfficialSource> = new Map(
   officialSources.map((source) => [source.id, source]),
 );

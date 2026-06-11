@@ -4,4 +4,4 @@ coverage/
 .env*.local
 .vercel/
 .superpowers/
-
+*.tsbuildinfo
