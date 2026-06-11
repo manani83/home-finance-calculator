@@ -9,6 +9,6 @@ describe("RootLayout", () => {
       template: "%s | 주거금융계산기",
     });
     expect(element.props.lang).toBe("ko");
-    expect(element.props.children.props.children[1]).toEqual(<p>본문</p>);
+    expect(element.props.children.props.children).toContainEqual(<p>본문</p>);
   });
 });

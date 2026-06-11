@@ -1,0 +1,3 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "사이트 소개" };
+export default function AboutPage() { return <main className="page-container"><article className="policy-page"><span className="eyebrow">About</span><h1>주거금융계산기 소개</h1><p>주거금융계산기는 전세보증금과 대출 이자를 직접 계산하고, 관련 제도와 보증상품을 공식 출처에서 다시 확인할 수 있도록 만든 정보 사이트입니다.</p><h2>우리가 지키는 원칙</h2><ul><li>금융위원회, 금융감독원, HF, HUG, SGI, 국가법령정보센터 등 공식 원문을 우선합니다.</li><li>계산 결과를 실제 대출 심사나 법률 판단과 구분합니다.</li><li>계산기에 입력한 금액과 금리는 저장하거나 전송하지 않습니다.</li><li>콘텐츠 변경은 자동 게시하지 않고 사람이 출처와 표현을 검토합니다.</li></ul><h2>제공하지 않는 서비스</h2><p>금융상품 중개, 가입 권유, 개인별 대출 상담, 신용평가 또는 승인 가능성 판정을 제공하지 않습니다.</p></article></main>; }

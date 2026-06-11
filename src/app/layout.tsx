@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { AdSenseScript } from "@/components/adsense-script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://housing-finance-calculator.vercel.app"),
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
-      <body><SiteHeader />{children}<SiteFooter /></body>
+      <body><AdSenseScript /><SiteHeader />{children}<SiteFooter /></body>
     </html>
   );
 }

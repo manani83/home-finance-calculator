@@ -1,0 +1,3 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "개인정보처리방침" };
+export default function PrivacyPage() { return <main className="page-container"><article className="policy-page"><span className="eyebrow">Privacy</span><h1>개인정보처리방침</h1><p>시행일: 2026년 6월 11일</p><h2>계산기 입력값</h2><p>계산기에 입력한 보증금, 대출금과 금리는 브라우저에서만 계산하며 서버, 쿠키, 로컬 스토리지 또는 분석 도구에 저장하지 않습니다.</p><h2>문의 정보</h2><p>이 사이트는 문의 폼을 운영하지 않습니다. 이메일 문의 시 사용자가 직접 제공한 이메일 주소와 메시지는 답변 목적으로만 사용해야 하며, 금융정보나 민감정보를 보내지 않아야 합니다.</p><h2>광고</h2><p>AdSense 환경변수가 설정된 운영 환경에서는 Google 등 제3자 광고 사업자가 쿠키를 사용할 수 있습니다. 광고를 실제 활성화할 때는 적용되는 광고 기술, 동의 관리와 거부 방법을 이 방침에 구체적으로 반영해야 합니다. 환경변수가 없으면 광고 스크립트를 로드하지 않습니다.</p><h2>변경</h2><p>수집 항목이나 외부 서비스가 추가되면 실제 운영 내용에 맞춰 이 방침과 시행일을 먼저 갱신합니다.</p></article></main>; }
