@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --ink: #17231d;
+  --muted: #5f6f67;
+  --line: #dce5df;
+  --surface: #f5f8f6;
+  --brand: #12614a;
+  --brand-dark: #0a4534;
+  --accent: #dff2e9;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--ink);
+  font-family: Arial, "Noto Sans KR", sans-serif;
+  line-height: 1.65;
+}
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
