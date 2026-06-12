@@ -18,4 +18,15 @@ describe("HomePage", () => {
     }
     expect(screen.getByText(/입력값은 저장하거나 전송하지 않습니다/)).toBeInTheDocument();
   });
+
+  it("provides distinct desktop and mobile hero copy", () => {
+    render(<HomePage />);
+
+    expect(screen.getByText(/전세보증금과/)).toHaveClass("hero-copy-desktop");
+    expect(screen.getByText("전세금")).toHaveClass("hero-keyword");
+    expect(screen.getByText("대출 이자")).toHaveClass("hero-keyword");
+    expect(screen.getByText(/한눈에 계산하세요/)).toBeInTheDocument();
+    expect(screen.getByText("예상 계산값과 공식 확인 자료를 한곳에서 제공합니다.")).toBeInTheDocument();
+    expect(screen.getByText("입력한 금액과 금리는 외부로 전송되지 않습니다.")).toBeInTheDocument();
+  });
 });

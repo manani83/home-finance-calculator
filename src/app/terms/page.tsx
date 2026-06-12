@@ -1,3 +1,3 @@
 import type { Metadata } from "next";
-export const metadata: Metadata = { title: "이용약관" };
+export const metadata: Metadata = { title: "이용약관", alternates: { canonical: "/terms" } };
 export default function TermsPage() { return <main className="page-container"><article className="policy-page"><span className="eyebrow">Terms</span><h1>이용약관</h1><p>시행일: 2026년 6월 11일</p><h2>정보 제공 목적</h2><p>이 사이트의 계산 결과와 콘텐츠는 일반적인 정보 제공을 위한 것입니다. 금융상품 추천, 중개, 법률·세무 자문 또는 대출 승인 보장을 의미하지 않습니다.</p><h2>사용자의 확인 의무</h2><p>금리, 한도, 보증 조건, 법령과 금융기관 절차는 변경될 수 있습니다. 계약이나 신청 전 해당 금융기관, 보증기관과 국가법령정보센터의 최신 공식 안내를 확인해야 합니다.</p><h2>계산 결과</h2><p>계산기는 입력값에 정해진 산식을 적용한 예상값을 제공합니다. 원리금 상환 방식, 일수 계산, 수수료, 우대금리와 심사 결과는 반영하지 않을 수 있습니다.</p><h2>금지 행위</h2><p>사이트를 금융상품 모집, 허위 광고, 자동화된 과도한 요청 또는 다른 사용자의 이용을 방해하는 목적으로 사용해서는 안 됩니다.</p></article></main>; }

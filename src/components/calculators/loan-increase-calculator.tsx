@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { calculateLoanIncrease, type LoanIncreaseResult } from "@/calculators/loan-increase";
 import { formatWon } from "@/lib/format";
+import { CalculatorExplanation } from "./calculator-explanation";
 import { CalculatorShell, EstimateNotice } from "./calculator-shell";
 import { MoneyInput, RateInput } from "./money-input";
 
@@ -40,6 +41,23 @@ export function LoanIncreaseCalculator() {
         <p className="estimate-notice">금융기관에 따라 전체 잔액에 신규 금리를 적용할 수 있으므로 실제 적용 방식을 확인하세요.</p>
         <EstimateNotice />
       </div> : null}
+      <CalculatorExplanation
+        formula="증액 후 월 이자 = 기존 대출 월 이자 + 증액분 월 이자 / 각 월 이자 = 해당 원금 x 해당 연 금리 / 100 / 12"
+        example="기존 1억원과 증액 2,000만원을 각각 연 4.0%, 연 4.5%로 계산하면 기존 월 이자는 약 333,333원, 증액분은 75,000원, 합계는 약 408,333원입니다."
+        rounding="기존 대출과 증액분의 월 이자를 각각 원 단위로 반올림한 뒤 합산합니다. 실제 금융기관의 일수 계산 방식에 따라 차이가 날 수 있습니다."
+        exclusions={[
+          "증액 심사에 따른 보증료와 부대 비용",
+          "기존 대출의 중도상환수수료 또는 조건 변경 비용",
+          "원금 상환액과 상환 방식 변경",
+          "소득, 신용도, 주택 조건과 보증기관의 증액 심사 결과",
+        ]}
+        cautions={[
+          "이 계산기는 기존 대출과 증액분에 서로 다른 금리가 유지된다고 가정합니다.",
+          "금융기관에 따라 증액 시 전체 잔액에 신규 금리를 적용할 수 있으므로 실제 약정 방식을 확인하세요.",
+          "증액 실행 전 보증 재심사, 필요 서류, 실행 일정과 반환보증 변경 여부를 확인하세요.",
+        ]}
+        sourceIds={["hf-jeonse-guarantee", "fss-loan-consumer-guide"]}
+      />
     </CalculatorShell>
   );
 }
