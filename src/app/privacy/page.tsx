@@ -12,13 +12,18 @@ export default function PrivacyPage() {
       <article className="policy-page">
         <span className="eyebrow">Privacy</span>
         <h1>개인정보처리방침</h1>
-        <p>시행일: 2026년 6월 12일</p>
+        <p>시행일: 2026년 6월 15일</p>
 
         <h2>계산기 입력값</h2>
         <p>계산기에 입력한 보증금, 대출금과 금리는 현재 브라우저에서만 계산합니다. 해당 입력값을 서버, 쿠키, 로컬 스토리지 또는 분석 도구로 전송하거나 저장하지 않습니다.</p>
 
         <h2>이메일 문의 정보</h2>
         <p>문의 폼은 운영하지 않습니다. 사용자가 <a className="text-link" href={`mailto:${contactEmail}`}>{contactEmail}</a>로 직접 보낸 이메일 주소와 메시지는 문의 확인과 답변 목적으로 이용합니다. 관련 법령상 보관 의무가 있거나 분쟁 대응에 필요한 경우를 제외하고 목적 달성 후 삭제합니다.</p>
+
+        <h2>Google Analytics 4와 방문 분석</h2>
+        <p>방문 현황과 페이지 이용 흐름을 파악하기 위해 Google Analytics 4를 사용할 수 있습니다. 분석 수집에 동의한 경우에만 Google Analytics 태그를 불러오며, 동의하지 않거나 선택하지 않은 경우 분석 태그와 분석 쿠키를 사용하지 않습니다.</p>
+        <p>분석이 활성화되면 방문 페이지, 접속 시간, 브라우저와 기기 유형, 대략적인 지역, 유입 경로 등의 정보가 Google에 전송될 수 있습니다. 계산기에 입력한 보증금, 대출금, 금리와 계산 결과 또는 문의 내용은 분석 이벤트로 전송하지 않습니다.</p>
+        <p>사용자는 브라우저의 사이트 데이터에서 이 사이트의 분석 동의 선택과 쿠키를 삭제해 선택을 초기화할 수 있습니다. Google Analytics의 정보 수집을 브라우저에서 차단하려면 <a className="text-link" href="https://tools.google.com/dlpage/gaoptout?hl=ko" target="_blank" rel="noreferrer">Google Analytics 차단 브라우저 부가기능</a>을 사용할 수 있습니다.</p>
 
         <h2>Google AdSense와 광고 데이터</h2>
         <p>광고가 활성화된 경우 Google과 제3자 광고 공급업체는 광고 게재, 광고 효과 측정, 부정 사용 방지와 광고 개인 최적화를 위해 쿠키를 사용하거나 읽을 수 있습니다. 브라우저는 방문한 페이지 URL과 IP 주소 등의 정보를 Google에 자동으로 전송할 수 있습니다.</p>

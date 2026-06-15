@@ -40,6 +40,18 @@ describe("AdSense readiness pages", () => {
     expect(screen.getByText(/Google 인증 동의 관리 플랫폼/)).toBeInTheDocument();
   });
 
+  it("describes consent-gated analytics without collecting calculator values", () => {
+    render(<PrivacyPage />);
+
+    expect(screen.getByRole("heading", { name: /Google Analytics 4/ })).toBeInTheDocument();
+    expect(screen.getByText(/분석 수집에 동의한 경우에만/)).toBeInTheDocument();
+    expect(screen.getByText(/보증금, 대출금, 금리와 계산 결과/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Google Analytics 차단 브라우저 부가기능/ })).toHaveAttribute(
+      "href",
+      "https://tools.google.com/dlpage/gaoptout?hl=ko",
+    );
+  });
+
   it("shows a real public contact address without deployment instructions", () => {
     render(<ContactPage />);
 
