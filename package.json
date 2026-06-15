@@ -10,7 +10,8 @@
     "test:watch": "vitest",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
-    "validate:content": "node --import tsx scripts/validate-content.ts"
+    "validate:content": "node --import tsx scripts/validate-content.ts",
+    "indexnow:submit": "node --import tsx scripts/submit-indexnow.ts"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

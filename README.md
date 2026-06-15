@@ -10,7 +10,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-`http://localhost:3000`에서 확인합니다. 문의 이메일과 AdSense 값은 실제 운영 값이 준비된 경우에만 `.env.local`과 Vercel 환경변수에 설정합니다.
+`http://localhost:3000`에서 확인합니다. 문의 이메일과 AdSense 값은 실제 운영 값이 준비된 경우에만 `.env.local`과 Netlify 환경변수에 설정합니다.
 
 ## 검증
 
@@ -24,18 +24,23 @@ npm run build
 
 ## 콘텐츠 운영
 
-가이드는 `content/guides`의 MDX 파일이며 공식 출처는 `src/data/sources.ts`에 등록합니다. 새 문서는 검증 명령, PR, Vercel Preview와 사람의 출처 검토를 거쳐 병합합니다.
+가이드는 `content/guides`의 MDX 파일이며 공식 출처는 `src/data/sources.ts`에 등록합니다. 새 문서는 검증 명령, PR, Netlify Deploy Preview와 사람의 출처 검토를 거쳐 병합합니다.
 
-## Vercel
+## Netlify
 
-저장소를 Vercel에 연결하고 `main`을 Production 브랜치로 설정합니다. PR Preview에서 계산, 출처 링크, 정책 페이지를 확인합니다.
+저장소를 Netlify에 연결하고 `main`을 Production 브랜치로 설정합니다. Deploy Preview에서 계산, 출처 링크, 정책 페이지를 확인합니다.
 
 환경변수:
 
-- `NEXT_PUBLIC_SITE_URL`: 실제 canonical 도메인
+- `NEXT_PUBLIC_SITE_URL`: 실제 canonical 도메인. 기본값은 `https://shimmering-starship-236730.netlify.app`
 - `NEXT_PUBLIC_CONTACT_EMAIL`: 공개 문의 주소
 - `NEXT_PUBLIC_ADSENSE_CLIENT_ID`: 승인 후 발급된 AdSense 클라이언트 ID
 - `NEXT_PUBLIC_ADSENSE_SLOT_ID`: 광고 슬롯 ID
+- `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`: Google Search Console HTML 태그의 `content` 값
+- `NEXT_PUBLIC_NAVER_SITE_VERIFICATION`: 네이버 서치어드바이저 HTML 태그의 `content` 값
+- `NEXT_PUBLIC_BING_SITE_VERIFICATION`: Bing Webmaster Tools HTML 태그의 `content` 값
+- `INDEXNOW_KEY`: IndexNow에서 사용할 8~128자 16진수 키
 
 광고 환경변수가 없으면 광고 스크립트와 슬롯은 렌더링되지 않습니다.
 
+검색엔진 소유권 인증, sitemap 제출과 IndexNow 사용 순서는 [검색엔진 등록 절차](docs/search-engine-registration.md)를 따릅니다.
