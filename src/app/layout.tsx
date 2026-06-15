@@ -5,7 +5,9 @@ import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { AdSenseScript } from "@/components/adsense-script";
-import { siteUrl } from "@/lib/site-config";
+import { JsonLd } from "@/components/json-ld";
+import { buildVerificationMetadata, siteDescription, siteLocale, siteName, siteUrl } from "@/lib/site-config";
+import { buildSiteStructuredData } from "@/lib/structured-data";
 
 const pretendard = localFont({
   src: "./fonts/PretendardVariable.woff2",
@@ -17,17 +19,36 @@ const pretendard = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "주거금융계산기",
-    template: "%s | 주거금융계산기",
+    default: siteName,
+    template: `%s | ${siteName}`,
   },
-  description: "전세보증금과 전세대출 이자를 공식 출처와 함께 확인하는 계산기입니다.",
-  openGraph: { type: "website", locale: "ko_KR", siteName: "주거금융계산기" },
+  description: siteDescription,
+  openGraph: {
+    type: "website",
+    locale: siteLocale,
+    siteName,
+    title: siteName,
+    description: siteDescription,
+    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${siteName} 공식 출처 기반 계산기` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteName,
+    description: siteDescription,
+    images: ["/twitter-image"],
+  },
+  robots: { index: true, follow: true },
+  verification: buildVerificationMetadata({
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    naver: process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION,
+    bing: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
+  }),
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
-      <body className={pretendard.variable}><AdSenseScript /><SiteHeader />{children}<SiteFooter /></body>
+      <body className={pretendard.variable}><JsonLd data={buildSiteStructuredData()} /><AdSenseScript /><SiteHeader />{children}<SiteFooter /></body>
     </html>
   );
 }
