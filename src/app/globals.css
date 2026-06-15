@@ -43,6 +43,12 @@ button, input { font: inherit; }
 .input-with-unit span { flex: 0 0 auto; padding-right: 14px; color: var(--muted); }
 .primary-button { border: 0; border-radius: 12px; padding: 14px 20px; background: var(--brand); color: white; font-weight: 800; cursor: pointer; }
 .primary-button:hover { background: var(--brand-dark); }
+.secondary-button { border: 1px solid #b5c8bd; border-radius: 12px; padding: 14px 20px; background: #fff; color: var(--brand-dark); font-weight: 800; cursor: pointer; }
+.analytics-consent { position: fixed; right: 20px; bottom: 20px; left: 20px; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 24px; width: min(880px, calc(100% - 40px)); margin: 0 auto; padding: 20px 22px; border: 1px solid #b9cfc3; border-radius: 18px; background: #fff; box-shadow: 0 18px 55px rgba(20, 45, 34, .2); }
+.analytics-consent strong { color: var(--heading-strong); }
+.analytics-consent p { margin: 4px 0 0; color: var(--text-body); font-size: .92rem; }
+.analytics-consent a { color: var(--brand); font-weight: 800; }
+.analytics-consent-actions { display: flex; flex: 0 0 auto; gap: 8px; }
 .full-width { grid-column: 1 / -1; }
 .field-error { margin: 0; padding: 10px 12px; color: #8b1e1e; background: #fff0f0; border-radius: 10px; }
 .result-panel { display: grid; gap: 1px; margin-top: 20px; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--line); }
@@ -64,6 +70,7 @@ button, input { font: inherit; }
 .formula-box { padding: 14px 16px; border-radius: 12px; background: var(--surface); color: var(--brand-dark) !important; font-weight: 750; overflow-wrap: anywhere; }
 .calculator-explanation .source-section { margin-top: 16px; }
 @media (max-width: 640px) { .calculator-form.two-column { grid-template-columns: 1fr; } .result-panel > div { flex-direction: column; gap: 4px; } }
+@media (max-width: 640px) { .analytics-consent { align-items: stretch; flex-direction: column; gap: 14px; padding: 18px; } .analytics-consent-actions { display: grid; grid-template-columns: 1fr 1fr; } .analytics-consent-actions button { padding-inline: 10px; } }
 @media (max-width: 640px) { .calculator-explanation { margin-top: 48px; padding-top: 38px; } .calculator-explanation-grid { grid-template-columns: 1fr; } .calculator-explanation-wide { grid-column: auto; } .calculator-explanation-grid section { padding: 20px; } }
 .section-heading { max-width: 720px; margin-bottom: 32px; }
 .section-heading h1, .guide-article h1 { margin: 6px 0 10px; color: var(--heading-strong); font-size: clamp(2.35rem, 5vw, 3.8rem); font-weight: 850; line-height: 1.1; letter-spacing: -.045em; }

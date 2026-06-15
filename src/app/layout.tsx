@@ -5,6 +5,7 @@ import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { AdSenseScript } from "@/components/adsense-script";
+import { AnalyticsConsent } from "@/components/analytics-consent";
 import { JsonLd } from "@/components/json-ld";
 import { buildVerificationMetadata, siteDescription, siteLocale, siteName, siteUrl } from "@/lib/site-config";
 import { buildSiteStructuredData } from "@/lib/structured-data";
@@ -46,9 +47,11 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const analyticsMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
   return (
     <html lang="ko">
-      <body className={pretendard.variable}><JsonLd data={buildSiteStructuredData()} /><AdSenseScript /><SiteHeader />{children}<SiteFooter /></body>
+      <body className={pretendard.variable}><JsonLd data={buildSiteStructuredData()} /><AdSenseScript /><SiteHeader />{children}<SiteFooter /><AnalyticsConsent measurementId={analyticsMeasurementId} /></body>
     </html>
   );
 }
