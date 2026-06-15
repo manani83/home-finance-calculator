@@ -35,12 +35,12 @@ button, input { font: inherit; }
 .eyebrow { color: var(--brand); font-size: .82rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .calculator-form { display: grid; gap: 18px; padding: 28px; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); }
 .calculator-form.two-column { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.field { display: grid; gap: 7px; font-weight: 700; }
+.field { display: grid; width: 100%; min-width: 0; gap: 7px; font-weight: 700; }
 .field small { color: var(--brand); font-weight: 600; }
-.input-with-unit { display: flex; align-items: center; overflow: hidden; background: #fff; border: 1px solid #bdccc3; border-radius: 12px; }
+.input-with-unit { display: flex; align-items: center; width: 100%; min-width: 0; overflow: hidden; background: #fff; border: 1px solid #bdccc3; border-radius: 12px; }
 .input-with-unit:focus-within { border-color: var(--brand); outline: 3px solid rgba(18, 97, 74, .14); }
-.input-with-unit input { width: 100%; padding: 13px 14px; border: 0; outline: 0; background: transparent; }
-.input-with-unit span { padding-right: 14px; color: var(--muted); }
+.input-with-unit input { flex: 1 1 auto; width: 100%; min-width: 0; padding: 13px 14px; border: 0; outline: 0; background: transparent; }
+.input-with-unit span { flex: 0 0 auto; padding-right: 14px; color: var(--muted); }
 .primary-button { border: 0; border-radius: 12px; padding: 14px 20px; background: var(--brand); color: white; font-weight: 800; cursor: pointer; }
 .primary-button:hover { background: var(--brand-dark); }
 .full-width { grid-column: 1 / -1; }
