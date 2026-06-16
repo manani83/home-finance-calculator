@@ -17,6 +17,28 @@ describe("LoanInterestCalculator", () => {
     expect(container.querySelector("form")).not.toHaveAttribute("action");
   });
 
+  it("shows the estimated result while typing without submitting", async () => {
+    const user = userEvent.setup();
+    render(<LoanInterestCalculator />);
+
+    await user.type(screen.getByLabelText("대출 원금"), "100000000");
+    await user.type(screen.getByLabelText("연 금리"), "4.2");
+
+    expect(screen.getByRole("heading", { name: "월 예상 이자 350,000원" })).toBeInTheDocument();
+  });
+
+  it("offers mobile-friendly amount and rate presets", async () => {
+    const user = userEvent.setup();
+    render(<LoanInterestCalculator />);
+
+    await user.click(screen.getByRole("button", { name: "2억" }));
+    await user.click(screen.getByRole("button", { name: "4.0%" }));
+
+    expect(screen.getByLabelText("대출 원금")).toHaveValue("200,000,000");
+    expect(screen.getByLabelText("연 금리")).toHaveValue("4.0");
+    expect(screen.getByRole("heading", { name: "월 예상 이자 666,667원" })).toBeInTheDocument();
+  });
+
   it("shows a nearby error for a negative value", async () => {
     const user = userEvent.setup();
     render(<LoanInterestCalculator />);

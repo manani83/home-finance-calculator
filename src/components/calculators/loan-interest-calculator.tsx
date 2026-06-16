@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { calculateLoanInterest, type LoanInterestResult } from "@/calculators/loan-interest";
+import { useMemo, useState } from "react";
+import { calculateLoanInterest } from "@/calculators/loan-interest";
 import { formatWon } from "@/lib/format";
 import { CalculatorExplanation } from "./calculator-explanation";
 import { CalculatorShell, EstimateNotice } from "./calculator-shell";
@@ -10,8 +10,24 @@ import { MoneyInput, RateInput } from "./money-input";
 export function LoanInterestCalculator() {
   const [principal, setPrincipal] = useState("");
   const [rate, setRate] = useState("");
-  const [result, setResult] = useState<LoanInterestResult | null>(null);
   const [error, setError] = useState("");
+  const result = useMemo(() => {
+    if (principal === "" || rate === "") return null;
+    try {
+      return calculateLoanInterest(Number(principal), Number(rate));
+    } catch {
+      return null;
+    }
+  }, [principal, rate]);
+
+  const updatePrincipal = (value: string) => {
+    setPrincipal(value);
+    setError("");
+  };
+  const updateRate = (value: string) => {
+    setRate(value);
+    setError("");
+  };
 
   return (
     <CalculatorShell
@@ -23,23 +39,36 @@ export function LoanInterestCalculator() {
         onSubmit={(event) => {
           event.preventDefault();
           try {
-            const nextResult = calculateLoanInterest(Number(principal), Number(rate));
-            setResult(nextResult);
+            calculateLoanInterest(Number(principal), Number(rate));
             setError("");
           } catch (caught) {
-            setResult(null);
             setError(caught instanceof Error ? caught.message : "입력값을 확인해 주세요.");
           }
         }}
       >
-        <MoneyInput id="principal" label="대출 원금" value={principal} onChange={setPrincipal} />
-        <RateInput id="rate" label="연 금리" value={rate} onChange={setRate} />
+        <MoneyInput id="principal" label="대출 원금" value={principal} onChange={updatePrincipal} />
+        <div className="preset-group" aria-label="대출 원금 빠른 입력">
+          {[
+            ["1억", "100000000"],
+            ["2억", "200000000"],
+            ["3억", "300000000"],
+            ["4억", "400000000"],
+          ].map(([label, value]) => (
+            <button key={value} type="button" onClick={() => updatePrincipal(value)}>{label}</button>
+          ))}
+        </div>
+        <RateInput id="rate" label="연 금리" value={rate} onChange={updateRate} />
+        <div className="preset-group" aria-label="연 금리 빠른 입력">
+          {["3.5", "4.0", "4.5"].map((value) => (
+            <button key={value} type="button" onClick={() => updateRate(value)}>{value}%</button>
+          ))}
+        </div>
         {error ? <p role="alert" className="field-error">{error}</p> : null}
         <button className="primary-button" type="submit">이자 계산하기</button>
       </form>
       {result ? (
         <div className="result-panel" aria-live="polite">
-          <div><span>월 예상 이자</span><strong>{formatWon(result.monthlyInterest)}</strong></div>
+          <div className="result-summary"><h2><span>월 예상 이자</span> {formatWon(result.monthlyInterest)}</h2></div>
           <div><span>연 예상 이자</span><strong>{formatWon(result.annualInterest)}</strong></div>
           <EstimateNotice />
         </div>

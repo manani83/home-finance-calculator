@@ -29,4 +29,20 @@ describe("HomePage", () => {
     expect(screen.getByText("예상 계산값과 공식 확인 자료를 한곳에서 제공합니다.")).toBeInTheDocument();
     expect(screen.getByText("입력한 금액과 금리는 외부로 전송되지 않습니다.")).toBeInTheDocument();
   });
+
+  it("leads mobile users through urgent housing finance situations", () => {
+    render(<HomePage />);
+
+    expect(screen.getAllByRole("link", { name: /보증금 5% 넘는지 확인/ })[0]).toHaveAttribute("href", "/calculators/jeonse-increase");
+    expect(screen.getAllByRole("link", { name: /월 이자가 얼마인지 계산/ })[0]).toHaveAttribute("href", "/calculators/loan-interest");
+    expect(screen.getAllByRole("link", { name: /대출을 늘리면 이자 변화 확인/ })[0]).toHaveAttribute("href", "/calculators/loan-increase");
+  });
+
+  it("uses question-oriented calculator cards", () => {
+    render(<HomePage />);
+
+    expect(screen.getAllByText("보증금 5% 넘는지 확인")).toHaveLength(2);
+    expect(screen.getByText("집주인이 보증금을 올려달라고 했을 때 법정 상한과 실제 인상률을 먼저 확인하세요.")).toBeInTheDocument();
+    expect(screen.getByText("대출 늘리면 이자 얼마나 늘까")).toBeInTheDocument();
+  });
 });
