@@ -67,11 +67,21 @@ export function LoanInterestCalculator() {
         <button className="primary-button" type="submit">이자 계산하기</button>
       </form>
       {result ? (
-        <div className="result-panel" aria-live="polite">
-          <div className="result-summary"><h2><span>월 예상 이자</span> {formatWon(result.monthlyInterest)}</h2></div>
-          <div><span>연 예상 이자</span><strong>{formatWon(result.annualInterest)}</strong></div>
-          <EstimateNotice />
-        </div>
+        <>
+          <div className="result-panel" aria-live="polite">
+            <div className="result-summary"><h2><span>월 예상 이자</span> {formatWon(result.monthlyInterest)}</h2></div>
+            <div><span>연 예상 이자</span><strong>{formatWon(result.annualInterest)}</strong></div>
+            <EstimateNotice />
+          </div>
+          <section className="next-checks" aria-labelledby="loan-interest-next-checks">
+            <h2 id="loan-interest-next-checks">다음에 확인할 것</h2>
+            <div>
+              <span>보증료와 인지세</span>
+              <span>실제 적용 금리</span>
+              <span>상환 방식</span>
+            </div>
+          </section>
+        </>
       ) : null}
       <CalculatorExplanation
         formula="월 이자 = 대출 원금 x 연 금리 / 100 / 12 / 연 이자 = 대출 원금 x 연 금리 / 100"
