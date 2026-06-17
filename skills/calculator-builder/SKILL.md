@@ -1,14 +1,26 @@
 ---
 name: calculator-builder
-description: 전세·대출 계산기를 순수 함수와 브라우저 전용 UI로 추가할 때 사용한다.
+description: Use when adding or changing Korean jeonse, lease, deposit, or loan calculators, formulas, rounding, limits, validation, or calculator UI behavior in this project.
 ---
 
 # Calculator Builder
 
-1. 입력, 출력, 단위, 반올림과 제외 항목을 먼저 정의한다.
-2. 정상값, 0, 음수, 경계값, 소수와 큰 금액의 실패 테스트를 작성한다.
-3. `src/calculators`에 최소 순수 함수를 구현한다.
-4. UI는 순수 함수를 호출하며 입력값을 네트워크나 저장소로 보내지 않는다.
-5. 결과에 `예상 계산값`과 실제 기관 확인 안내를 표시한다.
-6. 단위 테스트와 컴포넌트 테스트를 실행한다.
+## Read First
 
+- Read only the target calculator, its test, and directly connected UI/page files first.
+- Read official sources only when formulas, limits, rates, or eligibility rules are changing.
+- Do not scan all guides unless a formula or displayed explanation affects them.
+
+## Rules
+
+1. Define inputs, outputs, units, rounding, exclusions, and source IDs before editing.
+2. Keep formulas in `src/calculators` pure functions. Do not put financial formulas in UI components.
+3. Write or update failing tests for normal values, 0, negatives, boundaries, decimals, and large won amounts before implementation.
+4. Keep calculator inputs in-browser only. Do not add API calls, logs, cookies, local storage, or analytics for input values.
+5. Label results as `예상 계산값` and separate them from actual screening or approval outcomes.
+
+## Verify
+
+- Formula only: run the relevant calculator test and `npm run typecheck`.
+- Formula plus content/source text: also run `npm run validate:content`.
+- UI behavior: run the relevant component test, `npm run lint`, and `npm run typecheck`.

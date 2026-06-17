@@ -1,15 +1,25 @@
 ---
 name: fact-checker
-description: 주거금융 콘텐츠의 사실성, 출처, 위험 표현과 면책을 검토할 때 사용한다.
+description: Use when reviewing Korean housing finance content, calculator explanations, official source claims, risky financial wording, disclaimers, or changed guide/calculator files.
 ---
 
 # Fact Checker
 
-1. 각 수치, 기간, 자격 조건과 법률 설명을 공식 원문에 대조한다.
-2. 출처 URL, 기관, 문서 제목과 확인일이 일치하는지 확인한다.
-3. 대출 승인, 최저금리, 보증 가입을 단정하는 표현을 찾는다.
-4. 계산 예시를 `src/calculators` 함수로 재현한다.
-5. 개인정보 수집이나 외부 전송이 추가되지 않았는지 확인한다.
+## Scope
 
-결과는 `통과 여부`, `수정 필요 문장`, `출처 부족`, `계산 검토`, `사람의 최종 확인` 순서로 보고한다.
+- Review changed files first. Do not read unrelated guides or calculators.
+- Escalate to official sources for numbers, periods, eligibility, legal rules, formulas, limits, rates, and guarantees.
+- Read `src/calculators` only when examples or formulas are touched.
 
+## Check
+
+1. Match each factual claim to official source ID, URL, title, organization, and checked date.
+2. Confirm unsupported or conflicting claims were not added.
+3. Find risky guarantees: approval certainty, lowest-rate certainty, universal eligibility, or product steering.
+4. Reproduce changed calculation examples with `src/calculators`.
+5. For formula/rule changes, confirm pure functions, tests, UI explanations, and affected guides changed together.
+6. Confirm no collection or external transfer of calculator input values was added.
+
+## Report
+
+Use this order: `통과 여부`, `수정 필요`, `출처 부족`, `계산 검토`, `변경 없음 유지`, `사람 확인`.
