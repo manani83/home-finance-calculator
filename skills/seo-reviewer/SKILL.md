@@ -1,11 +1,12 @@
 ---
 name: seo-reviewer
-description: 주거금융 페이지의 검색 의도, 메타데이터와 과장 표현을 검토할 때 사용한다.
+description: Use when reviewing search intent, titles, descriptions, canonicals, internal links, FAQ use, or SEO wording on Korean housing finance pages.
 ---
 
 # SEO Reviewer
 
-제목과 설명이 사용자의 실제 질문을 직접 답하는지 확인한다. 각 페이지에 고유 title, description, canonical, 업데이트일과 내부 링크를 둔다. FAQ는 본문에서 실제로 답한 질문에만 사용한다.
+Review only the target page and directly linked metadata helpers first.
+
+Check that title and description answer the real search question. Each page needs unique title, description, canonical, update signal where relevant, and useful internal links. Use FAQ only for questions answered in the body.
 
 `완벽정리`, `모르면 손해`, `숨기는 비밀`, 승인이나 금리를 보장하는 제목은 거부한다. 검색 최적화 때문에 공식 출처보다 강한 주장을 만들지 않는다.
-
