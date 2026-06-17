@@ -45,4 +45,20 @@ describe("HomePage", () => {
     expect(screen.getByText("집주인이 보증금을 올려달라고 했을 때 법정 상한과 실제 인상률을 먼저 확인하세요.")).toBeInTheDocument();
     expect(screen.getByText("대출 늘리면 이자 얼마나 늘까")).toBeInTheDocument();
   });
+
+  it("marks situation links as tappable choices", () => {
+    render(<HomePage />);
+
+    const situationList = screen.getByLabelText("자주 찾는 상황");
+    expect(situationList.querySelectorAll(".situation-index")).toHaveLength(3);
+    expect(situationList.querySelectorAll(".click-cue")).toHaveLength(3);
+  });
+
+  it("marks calculator and guide cards as clickable cards", () => {
+    render(<HomePage />);
+
+    expect(document.querySelectorAll(".card-click-cue")).toHaveLength(6);
+    expect(document.querySelectorAll(".calculator-card[data-clickable='true']")).toHaveLength(3);
+    expect(document.querySelectorAll(".home-guide-card[data-clickable='true']")).toHaveLength(3);
+  });
 });
