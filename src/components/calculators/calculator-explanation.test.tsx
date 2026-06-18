@@ -17,9 +17,12 @@ describe("CalculatorExplanation", () => {
     );
 
     expect(screen.getByText("계산 방식 보기 ▾")).toBeInTheDocument();
-    expect(screen.queryByText("원금 x 연 금리 / 100 / 12")).not.toBeInTheDocument();
+    expect(screen.getByText("원금 x 연 금리 / 100 / 12")).toBeInTheDocument();
+    expect(screen.getByTestId("calculator-explanation-panel")).toHaveAttribute("aria-hidden", "true");
 
     await user.click(screen.getByRole("button", { name: "계산 방식 보기 ▾" }));
+
+    expect(screen.getByTestId("calculator-explanation-panel")).toHaveAttribute("aria-hidden", "false");
 
     for (const heading of ["계산 방법", "계산 예시", "반올림 규칙", "계산에 포함되지 않는 항목", "사용 전 확인사항", "공식 출처"]) {
       expect(screen.getByRole("heading", { name: heading })).toBeInTheDocument();

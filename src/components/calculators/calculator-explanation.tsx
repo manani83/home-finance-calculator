@@ -21,6 +21,7 @@ export function CalculatorExplanation({
   sourceIds,
 }: CalculatorExplanationProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const panelId = "calculator-explanation-panel";
 
   return (
     <article className="calculator-explanation" aria-label="계산기 이용 안내">
@@ -28,13 +29,24 @@ export function CalculatorExplanation({
         <span className="eyebrow">계산 근거와 확인사항</span>
         <h2>결과를 확인하기 전에 읽어보세요</h2>
         <p>계산기가 적용하는 산식과 실제 계약·대출 검토에서 별도로 확인할 항목을 정리했습니다.</p>
-        <button className="accordion-toggle" type="button" onClick={() => setIsOpen((current) => !current)}>
+        <button
+          className="accordion-toggle"
+          type="button"
+          aria-controls={panelId}
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((current) => !current)}
+        >
           계산 방식 보기 {isOpen ? "▴" : "▾"}
         </button>
       </div>
 
-      {isOpen ? (
-        <>
+      <div
+        id={panelId}
+        data-testid="calculator-explanation-panel"
+        className={`calculator-explanation-panel${isOpen ? " is-open" : ""}`}
+        aria-hidden={!isOpen}
+      >
+        <div className="calculator-explanation-panel-inner">
           <div className="calculator-explanation-grid">
             <section>
               <h3>계산 방법</h3>
@@ -59,8 +71,8 @@ export function CalculatorExplanation({
           </div>
 
           <SourceList sourceIds={sourceIds} />
-        </>
-      ) : null}
+        </div>
+      </div>
     </article>
   );
 }

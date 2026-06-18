@@ -30,13 +30,20 @@ describe("StickyCtaBar", () => {
   it("appears after the hero section leaves the viewport", () => {
     render(<><section className="hero" /><StickyCtaBar /></>);
 
-    expect(screen.getByText("지금 계산하기")).toHaveAttribute("aria-hidden", "true");
+    expect(screen.getByText("지금 바로 계산하기")).toHaveAttribute("aria-hidden", "true");
 
     act(() => {
       MockIntersectionObserver.instances[0].callback([{ isIntersecting: false } as IntersectionObserverEntry], MockIntersectionObserver.instances[0] as unknown as IntersectionObserver);
     });
 
-    expect(screen.getByRole("link", { name: "지금 계산하기" })).toHaveClass("is-visible");
-    expect(screen.getByRole("link", { name: "지금 계산하기" })).toHaveAttribute("href", "/#calculators");
+    expect(screen.getByRole("link", { name: "지금 바로 계산하기" })).toHaveClass("is-visible");
+    expect(screen.getByRole("link", { name: "지금 바로 계산하기" })).toHaveAttribute("href", "/#calculators");
+  });
+
+  it("stays hidden when there is no hero section to observe", () => {
+    render(<StickyCtaBar />);
+
+    expect(screen.getByText("지금 바로 계산하기")).toHaveAttribute("aria-hidden", "true");
+    expect(MockIntersectionObserver.instances).toHaveLength(0);
   });
 });
