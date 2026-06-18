@@ -6,17 +6,13 @@ const css = readFileSync(join(process.cwd(), "src/app/globals.css"), "utf8");
 
 describe("mobile homepage hero", () => {
   it("switches copy and balances the title at the mobile breakpoint", () => {
-    expect(css).toMatch(/\.hero-copy-mobile[^}]*display: none/);
-    expect(css).toContain(".hero-copy-desktop { display: none; }");
-    expect(css).toContain(".hero-copy-mobile { display: block; }");
-    expect(css).toMatch(/\.hero \.hero-mobile-title[^}]*font-size: 36px[^}]*line-height: 1\.1[^}]*letter-spacing: 0/);
-    expect(css).toMatch(/\.hero-keyword[^}]*color: var\(--brand\)/);
+    expect(css).toMatch(/@media \(max-width: 760px\)[\s\S]*\.hero h1[^}]*font-size: 36px[^}]*line-height: 1\.1[^}]*letter-spacing: 0/);
   });
 
   it("keeps mobile actions usable on narrow screens", () => {
     expect(css).toMatch(/@media \(max-width: 760px\)[\s\S]*\.hero-actions[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
     expect(css).toMatch(/@media \(max-width: 360px\)[\s\S]*\.hero-actions[^}]*grid-template-columns: 1fr/);
-    expect(css).toMatch(/@media \(max-width: 360px\)[\s\S]*\.hero \.hero-mobile-title[^}]*font-size: 34px/);
+    expect(css).toMatch(/@media \(max-width: 360px\)[\s\S]*\.hero h1[^}]*font-size: 34px/);
   });
 
   it("keeps mobile headings readable without compressed Korean letter spacing", () => {
@@ -25,7 +21,13 @@ describe("mobile homepage hero", () => {
 
   it("keeps secondary links large enough to tap on mobile", () => {
     expect(css).toMatch(/\.calculator-card \.text-link, \.home-guide-card a, \.guide-card \.text-link[^}]*min-height: 44px/);
-    expect(css).toMatch(/@media \(max-width: 760px\)[\s\S]*\.nav-inner nav a[^}]*min-height: 44px/);
+    expect(css).toMatch(/\.menu-toggle[^}]*height: 44px/);
+    expect(css).toMatch(/\.mobile-drawer nav a[^}]*min-height: 58px/);
+  });
+
+  it("uses an opaque mobile drawer background so the page behind is hidden", () => {
+    expect(css).toMatch(/\.mobile-drawer[^}]*height: 100dvh[^}]*background: #fff/);
+    expect(css).toMatch(/\.mobile-drawer-overlay[^}]*background: #fff/);
   });
 
   it("uses visual click cues for tappable cards and choices", () => {

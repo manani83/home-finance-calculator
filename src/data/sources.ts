@@ -42,6 +42,20 @@ export const officialSources = [
     url: "https://fine.fss.or.kr/",
     checkedAt: "2026-06-11",
   },
+  {
+    id: "fsc-household-loan-policy",
+    organization: "금융위원회",
+    title: "가계대출 및 대출규제 관련 공식 정책 자료",
+    url: "https://www.fsc.go.kr/",
+    checkedAt: "2026-06-17",
+  },
+  {
+    id: "kfb-consumer-loan-rates",
+    organization: "은행연합회 소비자포털",
+    title: "대출금리 비교공시",
+    url: "https://portal.kfb.or.kr/",
+    checkedAt: "2026-06-17",
+  },
 ] as const satisfies readonly OfficialSource[];
 
 export const officialSourceMap: ReadonlyMap<string, OfficialSource> = new Map(

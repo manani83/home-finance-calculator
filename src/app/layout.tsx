@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { AdSenseScript } from "@/components/adsense-script";
 import { AnalyticsConsent } from "@/components/analytics-consent";
+import { StickyCtaBar } from "@/components/sticky-cta-bar";
 import { JsonLd } from "@/components/json-ld";
 import { buildVerificationMetadata, siteDescription, siteLocale, siteName, siteUrl } from "@/lib/site-config";
 import { buildSiteStructuredData } from "@/lib/structured-data";
@@ -51,7 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="ko">
-      <body className={pretendard.variable}><JsonLd data={buildSiteStructuredData()} /><AdSenseScript /><SiteHeader />{children}<SiteFooter /><AnalyticsConsent measurementId={analyticsMeasurementId} /></body>
+      <body className={pretendard.variable}><JsonLd data={buildSiteStructuredData()} /><AdSenseScript /><SiteHeader />{children}<SiteFooter /><StickyCtaBar /><AnalyticsConsent measurementId={analyticsMeasurementId} /></body>
     </html>
   );
 }
