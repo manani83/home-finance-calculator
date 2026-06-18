@@ -1,8 +1,10 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { CalculatorExplanation } from "./calculator-explanation";
 
 describe("CalculatorExplanation", () => {
-  it("renders the complete explanation structure and registered official sources", () => {
+  it("keeps calculation details collapsed until the user opens them", async () => {
+    const user = userEvent.setup();
     render(
       <CalculatorExplanation
         formula="원금 x 연 금리 / 100 / 12"
@@ -14,14 +16,12 @@ describe("CalculatorExplanation", () => {
       />,
     );
 
-    for (const heading of [
-      "계산 방법",
-      "계산 예시",
-      "반올림 규칙",
-      "계산에 포함되지 않는 항목",
-      "사용 전 확인사항",
-      "공식 출처",
-    ]) {
+    expect(screen.getByText("계산 방식 보기 ▾")).toBeInTheDocument();
+    expect(screen.queryByText("원금 x 연 금리 / 100 / 12")).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "계산 방식 보기 ▾" }));
+
+    for (const heading of ["계산 방법", "계산 예시", "반올림 규칙", "계산에 포함되지 않는 항목", "사용 전 확인사항", "공식 출처"]) {
       expect(screen.getByRole("heading", { name: heading })).toBeInTheDocument();
     }
 
