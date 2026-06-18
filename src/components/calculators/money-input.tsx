@@ -1,5 +1,11 @@
 import { formatKoreanAmount } from "@/lib/format";
 
+const moneyPresets = [
+  { label: "+1천만", amount: 10_000_000 },
+  { label: "+5천만", amount: 50_000_000 },
+  { label: "+1억", amount: 100_000_000 },
+];
+
 function normalizeNumericInput(input: string, allowDecimal: boolean): string {
   const withoutSeparators = input.replaceAll(",", "");
   const sign = withoutSeparators.startsWith("-") ? "-" : "";
@@ -35,9 +41,14 @@ export function MoneyInput({
   onChange: (value: string) => void;
 }) {
   const numericValue = Number(value);
+  const addPresetAmount = (amount: number) => {
+    const currentValue = Number.isFinite(numericValue) ? numericValue : 0;
+    onChange(String(currentValue + amount));
+  };
+
   return (
-    <label className="field" htmlFor={id}>
-      <span>{label}</span>
+    <div className="field">
+      <label htmlFor={id}>{label}</label>
       <div className="input-with-unit">
         <input
           id={id}
@@ -54,7 +65,15 @@ export function MoneyInput({
       {value !== "" && Number.isFinite(numericValue) ? (
         <small>{formatKoreanAmount(numericValue)}</small>
       ) : null}
-    </label>
+      <div className="preset-group money-preset-group" aria-label={`${label} 빠른 입력`}>
+        {moneyPresets.map((preset) => (
+          <button key={preset.label} type="button" onClick={() => addPresetAmount(preset.amount)}>
+            {preset.label}
+          </button>
+        ))}
+        <button type="button" onClick={() => onChange("")}>초기화</button>
+      </div>
+    </div>
   );
 }
 

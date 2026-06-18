@@ -37,8 +37,16 @@ describe("LoanInterestCalculator", () => {
     await user.type(screen.getByLabelText("연 금리"), "4.2");
 
     expect(screen.getByRole("heading", { name: "다음 단계" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "이 조건으로 실제 금리 확인하기" })).toHaveAttribute("href", "https://fine.fss.or.kr/");
-    expect(screen.getByRole("link", { name: "보증 유형별 한도 비교하기" })).toHaveAttribute("href", "/calculators/loan-increase");
+    expect(screen.getByRole("link", { name: "대출 늘리면 이자 얼마나 늘까 계산하기" })).toHaveAttribute("href", "/calculators/loan-increase");
+    expect(screen.getByRole("link", { name: "전세대출 연장 vs 대환 가이드 읽기" })).toHaveAttribute("href", "/guides/loan-extension-vs-refinance");
+  });
+
+  it("does not show next step action buttons before a result exists", () => {
+    render(<LoanInterestCalculator />);
+
+    expect(screen.queryByRole("heading", { name: "다음 단계" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "대출 늘리면 이자 얼마나 늘까 계산하기" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "전세대출 연장 vs 대환 가이드 읽기" })).not.toBeInTheDocument();
   });
 
   it("offers mobile-friendly amount and rate presets", async () => {

@@ -36,6 +36,13 @@ export const officialSources = [
     checkedAt: "2026-06-11",
   },
   {
+    id: "law-housing-lease-protection-article-7-2",
+    organization: "국가법령정보센터",
+    title: "주택임대차보호법 제7조의2",
+    url: "https://www.law.go.kr/법령/주택임대차보호법/제7조의2",
+    checkedAt: "2026-06-18",
+  },
+  {
     id: "fss-loan-consumer-guide",
     organization: "금융감독원 금융소비자정보포털 파인",
     title: "금융상품 한눈에 및 금융소비자 정보",
