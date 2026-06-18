@@ -24,6 +24,20 @@ describe("SiteHeader", () => {
     expect(screen.queryByRole("dialog", { name: "모바일 메뉴" })).not.toBeInTheDocument();
   });
 
+  it("updates the active navigation item from window.location.pathname changes", () => {
+    render(<SiteHeader />);
+
+    expect(screen.getByRole("link", { name: "계산기" })).not.toHaveClass("active");
+
+    act(() => {
+      window.history.pushState({}, "", "/calculators/loan-interest");
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+
+    expect(screen.getByRole("link", { name: "계산기" })).toHaveClass("active");
+    expect(screen.getByRole("link", { name: "계산기" })).toHaveAttribute("aria-current", "page");
+  });
+
   it("closes the mobile drawer when the overlay background is tapped", async () => {
     const user = userEvent.setup();
     render(<SiteHeader />);

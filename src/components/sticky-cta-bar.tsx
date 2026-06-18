@@ -8,7 +8,10 @@ export function StickyCtaBar() {
 
   useEffect(() => {
     const hero = document.querySelector(".hero");
-    if (!hero || typeof IntersectionObserver === "undefined") {
+    if (!hero) {
+      return undefined;
+    }
+    if (typeof IntersectionObserver === "undefined") {
       const frame = window.requestAnimationFrame(() => setIsVisible(true));
       return () => window.cancelAnimationFrame(frame);
     }
@@ -28,7 +31,7 @@ export function StickyCtaBar() {
       aria-hidden={isVisible ? "false" : "true"}
       tabIndex={isVisible ? 0 : -1}
     >
-      지금 계산하기
+      지금 바로 계산하기
     </Link>
   );
 }

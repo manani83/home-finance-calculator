@@ -2,10 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { calculateLoanInterest } from "@/calculators/loan-interest";
-import { formatWon } from "@/lib/format";
 import { CalculatorExplanation } from "./calculator-explanation";
 import { CalculatorNextSteps, CalculatorShell, EstimateNotice } from "./calculator-shell";
 import { MoneyInput, RateInput } from "./money-input";
+
+function formatApproxManwon(label: "월" | "연", value: number): string {
+  const manwon = Math.round(value / 10_000);
+  return `${label} 약 ${manwon.toLocaleString("ko-KR")}만원`;
+}
 
 export function LoanInterestCalculator() {
   const [principal, setPrincipal] = useState("");
@@ -56,11 +60,14 @@ export function LoanInterestCalculator() {
       {result ? (
         <>
           <div className="result-panel result-card-grid" aria-live="polite">
-            <div className="result-number-card"><span>월 예상 이자</span><strong>{formatWon(result.monthlyInterest)}</strong></div>
-            <div className="result-number-card"><span>연 예상 이자</span><strong>{formatWon(result.annualInterest)}</strong></div>
+            <div className="result-number-card"><span>월 예상 이자</span><strong>{formatApproxManwon("월", result.monthlyInterest)}</strong></div>
+            <div className="result-number-card"><span>연 예상 이자</span><strong>{formatApproxManwon("연", result.annualInterest)}</strong></div>
             <EstimateNotice />
           </div>
-          <CalculatorNextSteps />
+          <CalculatorNextSteps
+            primary={{ label: "이 조건으로 실제 금리 확인하기", href: "https://fine.fss.or.kr/", external: true }}
+            secondary={{ label: "보증 유형별 한도 비교하기", href: "/calculators/loan-increase" }}
+          />
         </>
       ) : null}
       <CalculatorExplanation

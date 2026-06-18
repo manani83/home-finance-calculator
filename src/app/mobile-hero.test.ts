@@ -34,11 +34,20 @@ describe("mobile homepage hero", () => {
     expect(css).toMatch(/\.situation-links a[^}]*position: relative/);
     expect(css).toMatch(/\.click-cue[^}]*margin-left: auto/);
     expect(css).toMatch(/\.calculator-card, \.home-guide-card[^}]*cursor: pointer/);
+    expect(css).toMatch(/\.calculator-card[^}]*min-height: 80px/);
+    expect(css).toMatch(/\.calculator-card:hover, \.calculator-card:focus-visible[^}]*border-color: #1A56DB/);
     expect(css).toMatch(/\.card-click-cue[^}]*border-radius: 999px/);
   });
 
   it("gives tappable elements clear focus and active feedback", () => {
-    expect(css).toMatch(/\.primary-link:focus-visible, \.secondary-link:focus-visible, \.situation-links a:focus-visible, \.calculator-card a:focus-visible, \.home-guide-card a:focus-visible[^}]*outline: 3px solid/);
+    expect(css).toMatch(/\.primary-link:focus-visible, \.secondary-link:focus-visible, \.situation-links a:focus-visible, \.calculator-card:focus-visible, \.home-guide-card a:focus-visible[^}]*outline: 3px solid/);
     expect(css).toMatch(/\.primary-link:active, \.secondary-link:active, \.situation-links a:active, \.calculator-card:active, \.home-guide-card:active[^}]*transform: scale\(\.98\)/);
+  });
+
+  it("styles the sticky CTA bar as a fixed bottom action", () => {
+    expect(css).toMatch(/\.sticky-cta-bar[^}]*position: fixed[^}]*right: 0[^}]*bottom: 0[^}]*left: 0/);
+    expect(css).toMatch(/\.sticky-cta-bar[^}]*height: calc\(64px \+ env\(safe-area-inset-bottom\)\)/);
+    expect(css).toMatch(/\.sticky-cta-bar[^}]*padding: 0 20px env\(safe-area-inset-bottom\)/);
+    expect(css).toMatch(/\.sticky-cta-bar[^}]*background: #1A56DB[^}]*color: #fff/);
   });
 });

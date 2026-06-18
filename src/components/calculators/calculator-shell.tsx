@@ -31,13 +31,26 @@ export function EstimateNotice() {
   );
 }
 
-export function CalculatorNextSteps() {
+export function CalculatorNextSteps({
+  primary = { label: "실제 금리 확인 →", href: "https://fine.fss.or.kr/", external: true },
+  secondary = { label: "다른 계산기 보기 →", href: "/#calculators" },
+}: {
+  primary?: { label: string; href: string; external?: boolean };
+  secondary?: { label: string; href: string };
+}) {
   return (
     <section className="next-steps" aria-labelledby="calculator-next-steps">
       <h2 id="calculator-next-steps">다음 단계</h2>
       <div>
-        <a className="primary-link" href="https://fine.fss.or.kr/" target="_blank" rel="noreferrer">실제 금리 확인 →</a>
-        <Link className="secondary-link" href="/#calculators">다른 계산기 보기 →</Link>
+        <a
+          className="primary-link"
+          href={primary.href}
+          target={primary.external ? "_blank" : undefined}
+          rel={primary.external ? "noreferrer" : undefined}
+        >
+          {primary.label}
+        </a>
+        <Link className="secondary-link" href={secondary.href}>{secondary.label}</Link>
       </div>
     </section>
   );

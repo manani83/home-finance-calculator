@@ -15,11 +15,23 @@ function isActive(currentPath: string, activePath: string) {
 }
 
 export function SiteHeader({ currentPath }: { currentPath?: string }) {
-  const [resolvedPath] = useState(() =>
-    currentPath ?? (typeof window === "undefined" ? "/" : window.location.pathname),
+  const [observedPath, setObservedPath] = useState(() =>
+    typeof window === "undefined" ? "/" : window.location.pathname,
   );
+  const resolvedPath = currentPath ?? observedPath;
   const [isOpen, setIsOpen] = useState(false);
   const [hasShadow, setHasShadow] = useState(false);
+
+  useEffect(() => {
+    if (currentPath !== undefined) return undefined;
+
+    const handlePathChange = () => {
+      setObservedPath(window.location.pathname);
+    };
+
+    window.addEventListener("popstate", handlePathChange);
+    return () => window.removeEventListener("popstate", handlePathChange);
+  }, [currentPath]);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
