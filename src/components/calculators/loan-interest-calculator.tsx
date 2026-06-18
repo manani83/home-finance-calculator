@@ -65,8 +65,8 @@ export function LoanInterestCalculator() {
             <EstimateNotice />
           </div>
           <CalculatorNextSteps
-            primary={{ label: "이 조건으로 실제 금리 확인하기", href: "https://fine.fss.or.kr/", external: true }}
-            secondary={{ label: "보증 유형별 한도 비교하기", href: "/calculators/loan-increase" }}
+            primary={{ label: "대출 늘리면 이자 얼마나 늘까 계산하기", href: "/calculators/loan-increase" }}
+            secondary={{ label: "전세대출 연장 vs 대환 가이드 읽기", href: "/guides/loan-extension-vs-refinance" }}
           />
         </>
       ) : null}

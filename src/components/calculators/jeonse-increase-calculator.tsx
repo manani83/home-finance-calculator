@@ -37,7 +37,12 @@ export function JeonseIncreaseCalculator() {
             <p className="estimate-notice">5% 표시는 입력값의 산술 비교이며 개별 계약에 대한 법률 판단이 아닙니다.</p>
             <EstimateNotice />
           </div>
-          <CalculatorNextSteps />
+          <CalculatorNextSteps
+            primary={result.exceedsFivePercent
+              ? { label: "계약갱신청구권 가이드 읽기", href: "/guides/lease-renewal-right" }
+              : { label: "전세대출 월 이자 계산하기", href: "/calculators/loan-interest" }}
+            secondary={null}
+          />
         </>
       ) : null}
       <CalculatorExplanation

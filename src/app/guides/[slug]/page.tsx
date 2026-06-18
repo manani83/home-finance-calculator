@@ -5,23 +5,20 @@ import { GuideBody } from "@/components/content/guide-body";
 import { SourceList } from "@/components/content/source-list";
 import { JsonLd } from "@/components/json-ld";
 import { getGuide, getGuides } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/social-metadata";
 import { buildGuideStructuredData } from "@/lib/structured-data";
 
 export function generateStaticParams() { return getGuides().map(({ slug }) => ({ slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const guide = getGuide((await params).slug);
-  return guide ? {
+  return guide ? buildPageMetadata({
     title: guide.title,
     description: guide.description,
-    alternates: { canonical: `/guides/${guide.slug}` },
-    openGraph: {
-      type: "article",
-      title: guide.title,
-      description: guide.description,
-      modifiedTime: guide.updatedAt,
-      url: `/guides/${guide.slug}`,
-    },
-  } : {};
+    pathname: `/guides/${guide.slug}`,
+    imageSlug: guide.slug,
+    openGraphType: "article",
+    modifiedTime: guide.updatedAt,
+  }) : {};
 }
 export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
   const guide = getGuide((await params).slug);

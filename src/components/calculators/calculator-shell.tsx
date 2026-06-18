@@ -36,22 +36,33 @@ export function CalculatorNextSteps({
   secondary = { label: "다른 계산기 보기 →", href: "/#calculators" },
 }: {
   primary?: { label: string; href: string; external?: boolean };
-  secondary?: { label: string; href: string };
+  secondary?: { label: string; href: string } | null;
 }) {
   return (
     <section className="next-steps" aria-labelledby="calculator-next-steps">
       <h2 id="calculator-next-steps">다음 단계</h2>
       <div>
-        <a
-          className="primary-link"
-          href={primary.href}
-          target={primary.external ? "_blank" : undefined}
-          rel={primary.external ? "noreferrer" : undefined}
-        >
-          {primary.label}
-        </a>
-        <Link className="secondary-link" href={secondary.href}>{secondary.label}</Link>
+        <CalculatorActionLink action={primary} className="primary-link" />
+        {secondary ? <CalculatorActionLink action={secondary} className="secondary-link" /> : null}
       </div>
     </section>
   );
+}
+
+function CalculatorActionLink({
+  action,
+  className,
+}: {
+  action: { label: string; href: string; external?: boolean };
+  className: string;
+}) {
+  if (action.external) {
+    return (
+      <a className={className} href={action.href} target="_blank" rel="noreferrer">
+        {action.label}
+      </a>
+    );
+  }
+
+  return <Link className={className} href={action.href}>{action.label}</Link>;
 }

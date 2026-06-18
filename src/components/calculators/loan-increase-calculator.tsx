@@ -42,7 +42,10 @@ export function LoanIncreaseCalculator() {
             <p className="estimate-notice">금융기관에 따라 전체 잔액에 신규 금리를 적용할 수 있으므로 실제 적용 방식을 확인하세요.</p>
             <EstimateNotice />
           </div>
-          <CalculatorNextSteps />
+          <CalculatorNextSteps
+            primary={{ label: "전세대출 연장 vs 대환 가이드 읽기", href: "/guides/loan-extension-vs-refinance" }}
+            secondary={null}
+          />
         </>
       ) : null}
       <CalculatorExplanation
