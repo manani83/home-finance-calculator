@@ -38,6 +38,15 @@ describe("SiteHeader", () => {
     expect(screen.getByRole("link", { name: "계산기" })).toHaveAttribute("aria-current", "page");
   });
 
+  it("renders the brand with a visible home and calculator icon", () => {
+    render(<SiteHeader />);
+
+    const brand = screen.getByRole("link", { name: "주거금융계산기" });
+    expect(brand).toHaveClass("brand");
+    expect(within(brand).getByText("주거금융계산기")).toBeInTheDocument();
+    expect(within(brand).getByLabelText("집과 계산기 아이콘")).toBeInTheDocument();
+  });
+
   it("closes the mobile drawer when the overlay background is tapped", async () => {
     const user = userEvent.setup();
     render(<SiteHeader />);

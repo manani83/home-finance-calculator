@@ -12,7 +12,7 @@ export const officialSources = [
     organization: "한국주택금융공사(HF)",
     title: "전세자금보증",
     url: "https://www.hf.go.kr/ko/sub02/sub02_01_02_01.do",
-    checkedAt: "2026-06-11",
+    checkedAt: "2026-06-18",
   },
   {
     id: "hug-return-guarantee",

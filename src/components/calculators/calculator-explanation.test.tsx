@@ -32,6 +32,6 @@ describe("CalculatorExplanation", () => {
       "href",
       "https://www.hf.go.kr/ko/sub02/sub02_01_02_01.do",
     );
-    expect(screen.getByText(/확인일 2026-06-11/)).toBeInTheDocument();
+    expect(screen.getByText(/확인일 2026-06-18/)).toBeInTheDocument();
   });
 });
