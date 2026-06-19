@@ -9,6 +9,25 @@ const navItems = [
   { href: "/about", label: "사이트 소개", activePath: "/about" },
 ];
 
+function BrandLogo({ onClick }: { onClick?: () => void }) {
+  return (
+    <Link className="brand" href="/" aria-label="주거금융계산기" onClick={onClick}>
+      <span className="brand-mark" role="img" aria-label="집과 계산기 아이콘">
+        <svg viewBox="0 0 28 28" aria-hidden="true">
+          <path d="M4.5 12.3 14 4.4l9.5 7.9" />
+          <path d="M7.2 10.9v12h13.6v-12" />
+          <path d="M10.6 15.2h6.8" />
+          <path d="M10.6 18.2h2.2" />
+          <path d="M15.2 18.2h2.2" />
+          <path d="M10.6 21.2h2.2" />
+          <path d="M15.2 21.2h2.2" />
+        </svg>
+      </span>
+      <span className="brand-text">주거금융계산기</span>
+    </Link>
+  );
+}
+
 function isActive(currentPath: string, activePath: string) {
   if (activePath === "/calculators") return currentPath.startsWith("/calculators");
   return currentPath === activePath || currentPath.startsWith(`${activePath}/`);
@@ -54,7 +73,7 @@ export function SiteHeader({ currentPath }: { currentPath?: string }) {
   return (
     <header className={`site-header${hasShadow ? " is-scrolled" : ""}`}>
       <div className="nav-inner">
-        <Link className="brand" href="/">주거금융계산기</Link>
+        <BrandLogo />
         <nav aria-label="주요 메뉴">{renderLinks()}</nav>
         <button className="menu-toggle" type="button" aria-label="메뉴 열기" onClick={() => setIsOpen(true)}>☰</button>
       </div>
@@ -63,7 +82,7 @@ export function SiteHeader({ currentPath }: { currentPath?: string }) {
           <button className="mobile-drawer-overlay" type="button" aria-label="메뉴 배경 닫기" onClick={() => setIsOpen(false)} />
           <div className="mobile-drawer-panel">
             <div className="mobile-drawer-header">
-              <Link className="brand" href="/" onClick={() => setIsOpen(false)}>주거금융계산기</Link>
+              <BrandLogo onClick={() => setIsOpen(false)} />
               <button type="button" aria-label="메뉴 닫기" onClick={() => setIsOpen(false)}>×</button>
             </div>
             <nav aria-label="모바일 주요 메뉴" onClick={() => setIsOpen(false)}>{renderLinks()}</nav>

@@ -19,6 +19,11 @@ const calculatorSocialContent: Record<string, { title: string; description: stri
     title: "전월세 전환 계산기",
     description: "전세보증금을 월세로 전환할 때 전월세전환율 기준 예상 월세를 계산합니다.",
   },
+  "loan-limit": {
+    eyebrow: "계산기",
+    title: "전세대출 한도 추정 계산기",
+    description: "전세보증금과 LTV 비율로 예상 대출 한도와 자기 자금을 계산합니다.",
+  },
   "loan-increase": {
     eyebrow: "계산기",
     title: "전세대출 증액 계산기",

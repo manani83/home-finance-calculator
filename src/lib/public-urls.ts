@@ -5,6 +5,7 @@ const staticPaths = [
   "",
   "/calculators/jeonse-increase",
   "/calculators/jeonse-to-monthly",
+  "/calculators/loan-limit",
   "/calculators/loan-interest",
   "/calculators/loan-increase",
   "/guides",

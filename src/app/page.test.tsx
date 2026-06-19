@@ -7,6 +7,7 @@ describe("HomePage", () => {
     const destinations = [
       "/calculators/jeonse-increase",
       "/calculators/jeonse-to-monthly",
+      "/calculators/loan-limit",
       "/calculators/loan-interest",
       "/calculators/loan-increase",
       "/guides/hug-hf-sgi-comparison",
@@ -35,7 +36,7 @@ describe("HomePage", () => {
 
     expect(screen.getAllByRole("link", { name: /보증금 5% 넘는지 확인/ })[0]).toHaveAttribute("href", "/calculators/jeonse-increase");
     expect(screen.getAllByRole("link", { name: /전세를 월세로 바꾸면 얼마인지 계산/ })[0]).toHaveAttribute("href", "/calculators/jeonse-to-monthly");
-    expect(screen.getAllByRole("link", { name: /월 이자가 얼마인지 계산/ })[0]).toHaveAttribute("href", "/calculators/loan-interest");
+    expect(screen.getAllByRole("link", { name: /전세대출 한도 간단 추정/ })[0]).toHaveAttribute("href", "/calculators/loan-limit");
   });
 
   it("uses question-oriented calculator cards", () => {
@@ -44,6 +45,7 @@ describe("HomePage", () => {
     expect(screen.getAllByText("보증금 5% 넘는지 확인")).toHaveLength(2);
     expect(screen.getByText("집주인이 보증금을 올려달라고 했을 때 법정 상한과 실제 인상률을 먼저 확인하세요.")).toBeInTheDocument();
     expect(screen.getByText("전월세 전환 월세 계산")).toBeInTheDocument();
+    expect(screen.getAllByText("전세대출 한도 간단 추정")).toHaveLength(2);
     expect(screen.getByText("대출 늘리면 이자 얼마나 늘까")).toBeInTheDocument();
   });
 
@@ -58,8 +60,8 @@ describe("HomePage", () => {
   it("marks calculator and guide cards as clickable cards", () => {
     render(<HomePage />);
 
-    expect(document.querySelectorAll(".card-click-cue")).toHaveLength(7);
-    expect(document.querySelectorAll(".calculator-card[data-clickable='true']")).toHaveLength(4);
+    expect(document.querySelectorAll(".card-click-cue")).toHaveLength(8);
+    expect(document.querySelectorAll(".calculator-card[data-clickable='true']")).toHaveLength(5);
     expect(document.querySelectorAll(".home-guide-card[data-clickable='true']")).toHaveLength(3);
   });
 
@@ -68,8 +70,9 @@ describe("HomePage", () => {
 
     expect(screen.getByLabelText("보증금 계산기")).toBeInTheDocument();
     expect(screen.getByLabelText("전월세 전환 계산기")).toBeInTheDocument();
+    expect(screen.getByLabelText("대출 한도 계산기")).toBeInTheDocument();
     expect(screen.getByLabelText("이자 계산기")).toBeInTheDocument();
-    expect(screen.getByLabelText("한도 비교 계산기")).toBeInTheDocument();
+    expect(screen.getByLabelText("증액 이자 계산기")).toBeInTheDocument();
   });
 
   it("makes the whole calculator card a navigation link", () => {
@@ -77,6 +80,7 @@ describe("HomePage", () => {
 
     expect(document.querySelector('.calculator-card[href="/calculators/jeonse-increase"]')).toBeInTheDocument();
     expect(document.querySelector('.calculator-card[href="/calculators/jeonse-to-monthly"]')).toBeInTheDocument();
+    expect(document.querySelector('.calculator-card[href="/calculators/loan-limit"]')).toBeInTheDocument();
     expect(document.querySelector('.calculator-card[href="/calculators/loan-interest"]')).toBeInTheDocument();
     expect(document.querySelector('.calculator-card[href="/calculators/loan-increase"]')).toBeInTheDocument();
   });
